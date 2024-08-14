@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-measurements',
@@ -10,29 +11,42 @@ import { HttpClient } from '@angular/common/http';
 export class MeasurementsComponent implements OnInit {
   measurementsForm!: FormGroup;
   measurementsTable: any[] = []; // Таблица для записи измерений
+  person: any;
+  fullName: string = '';
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit(): void {
+	const id = this.route.snapshot.queryParamMap.get('id');
+    this.http.get<any>('http://localhost:8088/api/v1/persons/person/'+id)
+      .subscribe(data => {
+        this.person = data;
+		this.fullName = this.person.fullname
+		console.log(this.person.fullname)
+      }, error => {
+        console.error('Error loading person', error);
+      });
+	  
+	//init
     this.measurementsForm = this.fb.group({
       fullName: ['', Validators.required],
-      upperPressure: ['', Validators.required],
-      lowerPressure: ['', Validators.required],
-      pulse: ['', Validators.required]
+      systolicPressure: ['', Validators.required],
+      diastolicPressure: ['', Validators.required],
+      heartRate: ['', Validators.required]
     });
   }
 
   measure(): void {
-    const fullName = this.measurementsForm.get('fullName')?.value;
+    const personId = this.measurementsForm.get('personId')?.value;
 
     // Пример API запроса на измерение данных
-    this.http.post<any>('http://localhost:8088/api/v1/measure', { fullName: fullName })
+    this.http.get<any>('http://localhost:8088/api/v1/generator')
       .subscribe(response => {
-        // Допустим, что ответ API содержит поля upperPressure, lowerPressure и pulse
-        this.measurementsForm.patchValue({
-          upperPressure: response.upperPressure,
-          lowerPressure: response.lowerPressure,
-          pulse: response.pulse
+          this.measurementsForm.patchValue({
+		  fullName: this.person.fullname,
+          systolicPressure: response.systolicPressure,
+          diastolicPressure: response.diastolicPressure,
+          heartRate: response.heartRate
         });
       }, error => {
         console.error('Error measuring data', error);

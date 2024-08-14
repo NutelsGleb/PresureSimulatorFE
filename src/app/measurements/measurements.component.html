@@ -1,45 +1,41 @@
+
+<div class="container">
 <div class="measurements-container">
-  <h2>Измерения</h2>
+  <h2>{{ fullName }}</h2>
   
   <form [formGroup]="measurementsForm">
     <div>
-      <label for="fullName">Полное имя:</label>
-      <input id="fullName" formControlName="fullName" type="text" required>
+      <label for="systolicPressure">Systolic:</label>
+      <input id="systolicPressure" formControlName="systolicPressure" type="number" required>
     </div>
     
     <div>
-      <label for="upperPressure">Верхнее давление:</label>
-      <input id="upperPressure" formControlName="upperPressure" type="number" required>
+      <label for="diastolicPressure">Diastolic:</label>
+      <input id="diastolicPressure" formControlName="diastolicPressure" type="number" required>
     </div>
     
     <div>
-      <label for="lowerPressure">Нижнее давление:</label>
-      <input id="lowerPressure" formControlName="lowerPressure" type="number" required>
+      <label for="heartRate">Heart rate:</label>
+      <input id="heartRate" formControlName="heartRate" type="number" required>
     </div>
     
-    <div>
-      <label for="pulse">Пульс:</label>
-      <input id="pulse" formControlName="pulse" type="number" required>
-    </div>
-    
-    <button type="button" (click)="measure()">Измерить</button>
-    <button type="button" (click)="saveMeasurement()">Запись</button>
+    <button type="button" (click)="measure()">measure</button>
+    <button type="button" (click)="saveMeasurement()">save</button>
   </form>
-  
-  <h3>Таблица измерений</h3>
-  
+</div>
+
+<div class="tablemeasurements-container">  
   <table>
     <tr>
-      <th>Полное имя</th>
-      <th>Верхнее давление</th>
-      <th>Нижнее давление</th>
-      <th>Пульс</th>
+      <th>Sys</th>
+      <th>Dia</th>
+      <th>Heart</th>
     </tr>
     <tr *ngFor="let measurement of measurementsTable">
-      <td>{{ measurement.fullName }}</td>
-      <td>{{ measurement.upperPressure }}</td>
-      <td>{{ measurement.lowerPressure }}</td>
-      <td>{{ measurement.pulse }}</td>
+      <td>{{ measurement.systolicPressure }}</td>
+      <td>{{ measurement.diastolicPressure }}</td>
+      <td>{{ measurement.heartRate }}</td>
     </tr>
   </table>
+</div>
 </div>

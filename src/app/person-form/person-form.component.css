@@ -1,19 +1,18 @@
-/* Центрируем форму на странице */
 form {
   width: 300px;
   height: 620px;
   margin: 100px auto;
   padding: 50px;
   padding-top: 2px;
-  background-color: #8aa; /* Светло-серый фон */
-  border-radius: 25px; /* Скругленные углы */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Легкая тень для глубины */
+  background-color: #8aa;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Стили для лейблов */
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   font-weight: bold;
   text-align: left;
   font-size: 1.6rem;
@@ -29,12 +28,21 @@ label {
   font-size: 0.9rem;
 }
 
-h2 {
-	text-align: center;
-}
-
+h2,
 p{
-  border-bottom: 1px solid #ddd;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.6rem;
+	color: white;
+	margin-bottom: 5px;
+    margin-top: 10px;
+}
+p{
+	border-bottom: 1px solid #ddd;
+}
+h2{
+	margin-bottom: 25px;
+	margin-top: 25px;
 }
 
 
@@ -48,16 +56,21 @@ button {
   margin-bottom: 15px; /* Отступ между элементами */
   font-weight: bold;
   font-family: 'Georgia', serif; /* Замена на более жирный шрифт */
-  font-size: 1.6rem;  /* Увеличенный размер шрифта */
   border-radius: 5px; /* Скругленные углы для полей */
   border: 1px solid #cfc; /* Легкая рамка */
   box-sizing: border-box;
 }
 
+select,
+input{
+	font-size: 1.2rem;
+}
+
 /* Стили для кнопки отправки */
 button {
-  margin-bottom:5px;
-  margin-top:5px;
+  font-size: 1.6rem;
+  margin-bottom:0px;
+  margin-top:10px;
   background-color: #4a6; /* Зеленый фон */
   color: white; /* Белый текст */
   border: 2px solid #2e2;

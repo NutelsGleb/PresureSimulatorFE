@@ -17,21 +17,36 @@ table {
 }
 
 th, td {
-  padding: 20px;
+  padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 3px solid #8aa;
+  font-weight: bold;
+  font-family: 'Georgia', serif; /* Замена на более жирный шрифт */
+  font-size: 1.2rem;  /*  размер шрифта */
 }
 
-th {
-  background-color: #f2f2f2;
+td {
+  background-color: white;
+}
+td:hover {
+  background-color: #ced;
 }
 
-h2 {
-	text-align: center;
-}
-
+h2,
 p{
-  border-bottom: 1px solid #ddd;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.6rem;
+	color: white;
+	margin-bottom: 5px;
+    margin-top: 10px;
+}
+p{
+	border-bottom: 1px solid #ddd;
+}
+h2{
+	margin-bottom: 25px;
+	margin-top: 25px;
 }
 
 label {
@@ -59,8 +74,8 @@ button {
 
 /* Стили для кнопки отправки */
 button {
-  margin-bottom:5px;
-  margin-top:5px;
+  margin-bottom:0px;
+  margin-top:10px;
   background-color: #4a6; /* Зеленый фон */
   color: white; /* Белый текст */
   border: 2px solid #2e2;

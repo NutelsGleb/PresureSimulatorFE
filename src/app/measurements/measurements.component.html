@@ -1,41 +1,45 @@
 
 <div class="container">
-<div class="measurements-container">
-  <h2>{{ fullName }}</h2>
-  
-  <form [formGroup]="measurementsForm">
-    <div>
-      <label for="systolicPressure">Systolic:</label>
-      <input id="systolicPressure" formControlName="systolicPressure" type="number" required>
-    </div>
-    
-    <div>
-      <label for="diastolicPressure">Diastolic:</label>
-      <input id="diastolicPressure" formControlName="diastolicPressure" type="number" required>
-    </div>
-    
-    <div>
-      <label for="heartRate">Heart rate:</label>
-      <input id="heartRate" formControlName="heartRate" type="number" required>
-    </div>
-    
-    <button type="button" (click)="measure()">measure</button>
-    <button type="button" (click)="saveMeasurement()">save</button>
-  </form>
-</div>
 
-<div class="tablemeasurements-container">  
-  <table>
-    <tr>
-      <th>Sys</th>
-      <th>Dia</th>
-      <th>Heart</th>
-    </tr>
-    <tr *ngFor="let measurement of measurementsTable">
-      <td>{{ measurement.systolicPressure }}</td>
-      <td>{{ measurement.diastolicPressure }}</td>
-      <td>{{ measurement.heartRate }}</td>
-    </tr>
-  </table>
-</div>
+	<div class="measurements-container">
+		<h2>{{ fullName }}</h2>
+  
+		<form [formGroup]="measurementsForm">
+			<div>
+				<label for="systolicPressure">Systolic:</label>
+				<input id="systolicPressure" formControlName="systolicPressure" type="number" required readonly>
+			</div>
+    
+			<div>
+				<label for="diastolicPressure">Diastolic:</label>
+				<input id="diastolicPressure" formControlName="diastolicPressure" type="number" required readonly>
+			</div>
+    
+			<div>
+				<label for="heartRate">Heart rate:</label>
+				<input id="heartRate" formControlName="heartRate" type="number" required readonly>
+			</div>
+    
+			<button type="button" (click)="measure()">measure</button>
+			<button type="button" (click)="saveMeasurement()">save</button>
+		</form>
+	</div>
+  
+	<div class="tablemeasurements-container">  
+		<table>
+			<tr>
+				<th>Sys</th>
+				<th>Dia</th>
+				<th>Heart</th>
+				<th>Date</th>
+			</tr>
+			<tr *ngFor="let measurement of measurements">
+				<td>{{ measurement.systolicPressure }}</td>
+				<td>{{ measurement.diastolicPressure }}</td>
+				<td>{{ measurement.heartRate }}</td>
+				<td>{{ measurement.date }}</td>
+			</tr>
+		</table>
+	</div>
+	
 </div>

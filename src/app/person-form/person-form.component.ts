@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router'; // Импортируем Router
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-person-form',
@@ -11,6 +11,7 @@ import { Router } from '@angular/router'; // Импортируем Router
 export class PersonFormComponent implements OnInit {
   personForm!: FormGroup;
   formSubmitted: boolean = false; // Флаг для отслеживания отправки формы
+  newPerson: any;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
@@ -44,10 +45,10 @@ export class PersonFormComponent implements OnInit {
       const formData = this.personForm.value;
 
       this.http.post('http://localhost:8088/api/v1/persons/person', formData)
-        .subscribe(response => {
-          console.log('Person data submitted successfully', response);
-          // Перенаправление на страницу измерений после успешной отправки формы
-          this.router.navigate(['/measurements']);
+        .subscribe(data => {
+		  this.newPerson = data;
+          console.log('New person id:', this.newPerson.id);
+          this.router.navigate(['/measurements'], { queryParams: { id: this.newPerson.id} });
         }, error => {
           console.error('Error submitting person data', error);
         });
@@ -55,6 +56,8 @@ export class PersonFormComponent implements OnInit {
       console.log('Form is invalid');
     }
   }
+  
+  //btn list
     list(): void {
     this.router.navigate(['/list']);
   }

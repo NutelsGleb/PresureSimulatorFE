@@ -13,10 +13,12 @@ export class MeasurementsComponent implements OnInit {
   measurementsTable: any[] = []; // Таблица для записи измерений
   person: any;
   fullName: string = '';
+  measurements: any[] = [];
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit(): void {
+  //get person
 	const id = this.route.snapshot.queryParamMap.get('id');
     this.http.get<any>('http://localhost:8088/api/v1/persons/person/'+id)
       .subscribe(data => {
@@ -25,6 +27,15 @@ export class MeasurementsComponent implements OnInit {
 		console.log(this.person.fullname)
       }, error => {
         console.error('Error loading person', error);
+      });
+	  
+	//get measurements for this person  
+    this.http.get<any>('http://localhost:8088/api/v1/measurements/'+id)
+      .subscribe(mdata => {
+        this.measurements = mdata;
+		console.log(this.measurements)
+      }, error => {
+        console.error('Error loading measurements', error);
       });
 	  
 	//init

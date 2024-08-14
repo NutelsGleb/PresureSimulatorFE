@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-measurements',
@@ -14,13 +15,15 @@ export class MeasurementsComponent implements OnInit {
   person: any;
   fullName: string = '';
   measurements: any[] = [];
+  id: any;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private http: HttpClient) { }
-
+  constructor(private cdr: ChangeDetectorRef, private fb: FormBuilder, private route: ActivatedRoute, private http: HttpClient) { }  
+  
   ngOnInit(): void {
-  //get person
 	const id = this.route.snapshot.queryParamMap.get('id');
-    this.http.get<any>('http://localhost:8088/api/v1/persons/person/'+id)
+	this.id = id;
+  //get person
+    this.http.get<any>('http://localhost:8088/api/v1/persons/person/'+this.id)
       .subscribe(data => {
         this.person = data;
 		this.fullName = this.person.fullname
@@ -29,15 +32,7 @@ export class MeasurementsComponent implements OnInit {
         console.error('Error loading person', error);
       });
 	  
-	//get measurements for this person  
-    this.http.get<any>('http://localhost:8088/api/v1/measurements/'+id)
-      .subscribe(mdata => {
-        this.measurements = mdata;
-		console.log(this.measurements)
-      }, error => {
-        console.error('Error loading measurements', error);
-      });
-	  
+	this.getmeasure();  
 	//init
     this.measurementsForm = this.fb.group({
       fullName: ['', Validators.required],
@@ -46,11 +41,20 @@ export class MeasurementsComponent implements OnInit {
       heartRate: ['', Validators.required]
     });
   }
+  
+  getmeasure(): void {
+  	//get measurements for this person  
+    this.http.get<any>('http://localhost:8088/api/v1/measurements/'+this.id)
+      .subscribe(mdata => {
+        this.measurements = mdata;
+		console.log('get measurements ok')
+      }, error => {
+        console.error('Error loading measurements', error);
+      });
+  }
 
+    // generate
   measure(): void {
-    const personId = this.measurementsForm.get('personId')?.value;
-
-    // Пример API запроса на измерение данных
     this.http.get<any>('http://localhost:8088/api/v1/generator')
       .subscribe(response => {
           this.measurementsForm.patchValue({
@@ -59,6 +63,7 @@ export class MeasurementsComponent implements OnInit {
           diastolicPressure: response.diastolicPressure,
           heartRate: response.heartRate
         });
+		console.log('generator ok');
       }, error => {
         console.error('Error measuring data', error);
       });
@@ -66,7 +71,16 @@ export class MeasurementsComponent implements OnInit {
 
   saveMeasurement(): void {
     if (this.measurementsForm.valid) {
-      this.measurementsTable.push(this.measurementsForm.value);
+	  const formData = this.measurementsForm.value;
+	  
+      this.http.post('http://localhost:8088/api/v1/measurements/measurement/'+this.id, formData)
+        .subscribe(data => {
+          console.log('Success');
+			this.getmeasure();
+			this.cdr.detectChanges();
+        }, error => {
+          console.error('Error submitting measurement data', error);
+        }); 
       this.measurementsForm.reset(); // Очистка формы после сохранения
     } else {
       console.log('Form is invalid');

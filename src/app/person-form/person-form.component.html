@@ -1,0 +1,30 @@
+<form [formGroup]="personForm" (ngSubmit)="onSubmit()" [ngClass]="{'form-error': formSubmitted && !personForm.valid}">
+  <h2>Registration</h2>
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name" type="text" required>
+  </div>
+  
+  <div>
+    <label for="surname">Surname:</label>
+    <input id="surname" formControlName="surname" type="text" required>
+  </div>
+  
+  <div>
+    <label for="age">Age:</label>
+    <input id="age" formControlName="age" type="number" required>
+  </div>
+  
+  <div>
+    <label for="gender">Gender:</label>
+    <select id="gender" formControlName="gender" required>
+      <option value="male">male</option>
+      <option value="female">female</option>
+      <option value="other">other</option>
+    </select>
+  </div>
+  
+  <button type="submit">submit</button>
+  <p></p>
+  <button type="button" (click)="list()">or choose your name</button>
+</form>

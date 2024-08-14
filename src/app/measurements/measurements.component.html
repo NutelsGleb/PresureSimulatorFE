@@ -1,0 +1,45 @@
+<div class="measurements-container">
+  <h2>Измерения</h2>
+  
+  <form [formGroup]="measurementsForm">
+    <div>
+      <label for="fullName">Полное имя:</label>
+      <input id="fullName" formControlName="fullName" type="text" required>
+    </div>
+    
+    <div>
+      <label for="upperPressure">Верхнее давление:</label>
+      <input id="upperPressure" formControlName="upperPressure" type="number" required>
+    </div>
+    
+    <div>
+      <label for="lowerPressure">Нижнее давление:</label>
+      <input id="lowerPressure" formControlName="lowerPressure" type="number" required>
+    </div>
+    
+    <div>
+      <label for="pulse">Пульс:</label>
+      <input id="pulse" formControlName="pulse" type="number" required>
+    </div>
+    
+    <button type="button" (click)="measure()">Измерить</button>
+    <button type="button" (click)="saveMeasurement()">Запись</button>
+  </form>
+  
+  <h3>Таблица измерений</h3>
+  
+  <table>
+    <tr>
+      <th>Полное имя</th>
+      <th>Верхнее давление</th>
+      <th>Нижнее давление</th>
+      <th>Пульс</th>
+    </tr>
+    <tr *ngFor="let measurement of measurementsTable">
+      <td>{{ measurement.fullName }}</td>
+      <td>{{ measurement.upperPressure }}</td>
+      <td>{{ measurement.lowerPressure }}</td>
+      <td>{{ measurement.pulse }}</td>
+    </tr>
+  </table>
+</div>

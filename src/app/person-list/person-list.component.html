@@ -1,0 +1,17 @@
+<div class="person-list-container">
+  <h2>Choose your name</h2>
+  
+  <table>
+    <tr>
+      <th>Full name</th>
+    </tr>
+    <tr *ngFor="let person of persons">
+      <td>{{ person.fullName.toString() }}</td>
+    </tr>
+  </table>
+  
+  <button (click)="goToMeasurements()">login</button>
+  <p></p>
+  <button (click)="goToform()">registration</button>
+</div>
+

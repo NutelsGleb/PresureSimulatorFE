@@ -80,3 +80,11 @@ button {
 button:hover {
   background-color: #374; /* Темнее при наведении */
 }
+
+.bluebtn{
+	background-color: #28a;
+	border: 2px solid #29e;
+}
+.bluebtn:hover {
+  background-color: #068;
+}

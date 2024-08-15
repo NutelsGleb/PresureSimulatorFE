@@ -7,7 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PersonFormComponent } from './person-form/person-form.component';
 import { PersonListComponent } from './person-list/person-list.component';
-import { MeasurementsComponent } from './measurements/measurements.component'; 
+import { MeasurementsComponent } from './measurements/measurements.component';
+import { WelcomeComponent } from './welcome/welcome.component'; 
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MeasurementsComponent } from './measurements/measurements.component';
     AppComponent,
     PersonFormComponent,
     PersonListComponent,
-    MeasurementsComponent
+    MeasurementsComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

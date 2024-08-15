@@ -1,0 +1,61 @@
+.welcomePage {
+  width: 300px;
+  height: 620px;
+  margin: 100px auto;
+  padding: 50px;
+  padding-top: 2px;
+  background-color: #8aa;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+h2,
+p{
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.6rem;
+	color: white;
+	margin-bottom: 5px;
+    margin-top: 10px;
+}
+p{
+	border-bottom: 1px solid #ddd;
+}
+h2{
+	margin-bottom: 25px;
+	margin-top: 25px;
+}
+button {
+  width: 100%; /* Занимают всю ширину */
+  padding: 10px; /* Большой размер полей */
+  margin-bottom: 15px; /* Отступ между элементами */
+  font-weight: bold;
+  font-family: 'Georgia', serif; /* Замена на более жирный шрифт */
+  border-radius: 5px; /* Скругленные углы для полей */
+  border: 1px solid #cfc; /* Легкая рамка */
+  box-sizing: border-box;
+}
+button {
+  font-size: 1.6rem;
+  margin-bottom:100px;
+  margin-top:10px;
+  background-color: #4a6; /* Зеленый фон */
+  color: white; /* Белый текст */
+  border: 2px solid #2e2;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #374; /* Темнее при наведении */
+}
+
+.image-container {
+  display: flex;
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center;    /* Центрирование по вертикали */
+  height: 100vh;          /* Высота контейнера (можно установить другую высоту) */
+}
+
+.picture{
+  max-width: 100%; /* Опционально, чтобы изображение не выходило за пределы контейнера */
+  height: auto;
+}

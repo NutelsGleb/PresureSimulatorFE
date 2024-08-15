@@ -21,7 +21,11 @@
 			</div>
     
 			<button type="button" (click)="measure()">measure</button>
-			<button type="button" (click)="saveMeasurement()">save</button>
+			<br>
+			<br>
+			<br>
+			<p></p>
+			<button class="redbtn" type="button" (click)="cleanPerson()">remove my profile</button>
 		</form>
 	</div>
   
@@ -40,6 +44,8 @@
 				<td>{{ measurement.date }}</td>
 			</tr>
 		</table>
+	<button class="redbtn" type="button" (click)="cleanAll()">clean history</button>
+	
 	</div>
 	
 </div>

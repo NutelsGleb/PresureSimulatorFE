@@ -95,11 +95,20 @@ button:hover {
   background-color: #374; /* Темнее при наведении */
 }
 
+.redbtn{
+	background-color: #a12;
+	border: 2px solid #e22;
+	margin-top:30px;
+}
+.redbtn:hover {
+  background-color: #812; /* Темнее при наведении */
+}
+
 
 table {
   width: 100%;
   height: 300;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
   border-collapse: collapse;
 }
 

@@ -19,14 +19,10 @@
 				<label for="heartRate">Heart rate:</label>
 				<input id="heartRate" formControlName="heartRate" type="number" required readonly>
 			</div>
-    
-			<button type="button" (click)="measure()">measure</button>
-			<br>
-			<br>
-			<br>
-			<p></p>
-			<button class="redbtn" type="button" (click)="cleanPerson()">remove my profile</button>
+			<button type="button" (click)="measure()">measure</button>	
 		</form>
+
+		<button class="redbtn" type="button" (click)="cleanPerson()">remove my profile</button>
 	</div>
   
 	<div class="tablemeasurements-container">  

@@ -1,5 +1,5 @@
 .container{
-	display: flex;
+  display: flex;
   width: 900px;
   height: 620px;
   margin: 100px auto;
@@ -12,12 +12,16 @@
 
 .measurements-container {
 	width: 300px;
+	display: flex;
+    flex-direction: column;
 
 }
 .tablemeasurements-container {
 	width: 500px;
 	margin-left:100px;
 	margin-top: 25px;
+	display: flex;
+    flex-direction: column;
 }
 
 label {
@@ -98,7 +102,7 @@ button:hover {
 .redbtn{
 	background-color: #a12;
 	border: 2px solid #e22;
-	margin-top:30px;
+	margin-top: auto;
 }
 .redbtn:hover {
   background-color: #812; /* Темнее при наведении */

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class PersonListComponent implements OnInit {
   persons: any[] = [];
+  selectedPerson: string = '';
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -17,17 +18,18 @@ export class PersonListComponent implements OnInit {
   }
 
   loadPersons(): void {
-    this.http.get<any[]>('http://localhost:8088/api/v1/persons') // Предположим, что этот эндпоинт возвращает список персон
+    this.http.get<any[]>('http://localhost:8088/api/v1/persons')
       .subscribe(data => {
         this.persons = data;
       }, error => {
         console.error('Error loading persons', error);
       });
   }
-
-  goToMeasurements(): void {
-	this.router.navigate(['/measurements']);
+  selectPerson(id: string): void {
+    this.selectedPerson = id;
+    this.router.navigate(['/measurements'], { queryParams: { id: this.selectedPerson } });
   }
+
   goToform(): void {
     this.router.navigate(['/form']);
   }

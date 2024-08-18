@@ -1,17 +1,13 @@
 <div class="person-list-container">
   <h2>Choose your name</h2>
-  
+<div *ngIf="persons && persons.length > 0">  
   <table>
-    <tr>
-      <th>Full name</th>
-    </tr>
     <tr *ngFor="let person of persons">
-      <td>{{ person.fullName.toString() }}</td>
+      <td (click)="selectPerson(person.id)">{{ person.fullname }}</td>
     </tr>
   </table>
-  
-  <button (click)="goToMeasurements()">login</button>
-  <p></p>
+ </div>
+  <p>or</p>
   <button (click)="goToform()">registration</button>
 </div>
 

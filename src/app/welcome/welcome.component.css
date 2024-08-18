@@ -6,6 +6,7 @@
   padding-top: 2px;
   background-color: #8aa;
   border-radius: 25px;
+  text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 h2,
@@ -24,6 +25,7 @@ h2{
 	margin-bottom: 25px;
 	margin-top: 25px;
 }
+
 button {
   width: 100%; /* Занимают всю ширину */
   padding: 10px; /* Большой размер полей */

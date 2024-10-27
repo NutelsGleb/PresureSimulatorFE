@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-person-form',
@@ -12,10 +13,12 @@ export class PersonFormComponent implements OnInit {
   personForm!: FormGroup;
   formSubmitted: boolean = false; // Флаг для отслеживания отправки формы
   newPerson: any;
+  private apiUrl = environment.apiUrl;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
+    console.log(this.apiUrl);
     this.personForm = this.fb.group({
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       surname: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
@@ -44,7 +47,7 @@ export class PersonFormComponent implements OnInit {
     if (this.personForm.valid) {
       const formData = this.personForm.value;
 
-      this.http.post('http://localhost:8088/api/v1/persons/person', formData)
+      this.http.post(this.apiUrl+'/persons/person', formData)
         .subscribe(data => {
 		  this.newPerson = data;
           console.log('New person id:', this.newPerson.id);

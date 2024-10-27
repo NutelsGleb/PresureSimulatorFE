@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class MeasurementsComponent implements OnInit {
   fullName: string = '';
   measurements: any[] = [];
   id: any;
+  private apiUrl = environment.apiUrl;
 
   constructor(private router: Router, private cdr: ChangeDetectorRef, private fb: FormBuilder, private route: ActivatedRoute, private http: HttpClient) { }  
   
@@ -26,7 +28,7 @@ export class MeasurementsComponent implements OnInit {
 	const id = this.route.snapshot.queryParamMap.get('id');
 	this.id = id;
   //get person
-    this.http.get<any>('http://localhost:8088/api/v1/persons/person/'+this.id)
+    this.http.get<any>(this.apiUrl+'/persons/person/'+this.id)
       .subscribe(data => {
         this.person = data;
 		this.fullName = this.person.fullname
@@ -47,7 +49,7 @@ export class MeasurementsComponent implements OnInit {
   
   getmeasure(): void {
   	//get measurements for this person  
-    this.http.get<any>('http://localhost:8088/api/v1/measurements/'+this.id)
+    this.http.get<any>(this.apiUrl+'/measurements/'+this.id)
       .subscribe(mdata => {
         this.measurements = mdata;
 		console.log('get measurements ok')
@@ -58,7 +60,7 @@ export class MeasurementsComponent implements OnInit {
 
     // generate
   measure(): void {
-    this.http.get<any>('http://localhost:8088/api/v1/generator')
+    this.http.get<any>(this.apiUrl+'/generator')
       .subscribe(response => {
           this.measurementsForm.patchValue({
 		  fullName: this.person.fullname,
@@ -80,7 +82,7 @@ export class MeasurementsComponent implements OnInit {
     if (this.measurementsForm.valid) {
 	  const formData = this.measurementsForm.value;
 	  
-      this.http.post('http://localhost:8088/api/v1/measurements/measurement/'+this.id, formData)
+      this.http.post('${this.apiUrl}/measurements/measurement/'+this.id, formData)
         .subscribe(data => {
           console.log('Success');
 			this.getmeasure();
@@ -108,7 +110,7 @@ export class MeasurementsComponent implements OnInit {
     if (result.isConfirmed) {
       const formData = this.measurementsForm.value;
 
-      this.http.delete('http://localhost:8088/api/v1/measurements/' + this.id, formData)
+      this.http.delete('${this.apiUrl}/measurements/' + this.id, formData)
         .subscribe(data => {
           console.log('Success all clean');
           this.getmeasure();
@@ -134,7 +136,7 @@ export class MeasurementsComponent implements OnInit {
     if (result.isConfirmed) {
       const formData = this.measurementsForm.value;
 
-      this.http.delete('http://localhost:8088/api/v1/persons/person/' + this.id, formData)
+      this.http.delete('${this.apiUrl}/persons/person/' + this.id, formData)
         .subscribe(data => {
           console.log('Success profile removed');
           

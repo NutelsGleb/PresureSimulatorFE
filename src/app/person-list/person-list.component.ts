@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-person-list',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 export class PersonListComponent implements OnInit {
   persons: any[] = [];
   selectedPerson: string = '';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -18,7 +20,7 @@ export class PersonListComponent implements OnInit {
   }
 
   loadPersons(): void {
-    this.http.get<any[]>('http://localhost:8088/api/v1/persons')
+    this.http.get<any[]>(this.apiUrl+'/persons')
       .subscribe(data => {
         this.persons = data;
       }, error => {

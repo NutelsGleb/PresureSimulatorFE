@@ -70,6 +70,12 @@
                   "maximumError": "4kB"
                 }
               ],
+			  "fileReplacements": [
+				{
+					"replace": "app/src/environments/environment.ts",
+					"with": "app/src/environments/environment.k8s.ts"
+				}
+			  ],
               "outputHashing": "all"
             },
             "development": {

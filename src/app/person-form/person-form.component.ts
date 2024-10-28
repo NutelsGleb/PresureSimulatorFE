@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../environments/environment';
+import { environment } from '../../../app/src/environments/environment';
 
 @Component({
   selector: 'app-person-form',

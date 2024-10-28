@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { environment } from '../environments/environment';
+import { environment } from '../../../app/src/environments/environment';
 
 
 @Component({
@@ -82,7 +82,7 @@ export class MeasurementsComponent implements OnInit {
     if (this.measurementsForm.valid) {
 	  const formData = this.measurementsForm.value;
 	  
-      this.http.post('${this.apiUrl}/measurements/measurement/'+this.id, formData)
+      this.http.post(this.apiUrl+'/measurements/measurement/'+this.id, formData)
         .subscribe(data => {
           console.log('Success');
 			this.getmeasure();
@@ -110,7 +110,7 @@ export class MeasurementsComponent implements OnInit {
     if (result.isConfirmed) {
       const formData = this.measurementsForm.value;
 
-      this.http.delete('${this.apiUrl}/measurements/' + this.id, formData)
+      this.http.delete(this.apiUrl+'/measurements/' + this.id, formData)
         .subscribe(data => {
           console.log('Success all clean');
           this.getmeasure();
@@ -136,7 +136,7 @@ export class MeasurementsComponent implements OnInit {
     if (result.isConfirmed) {
       const formData = this.measurementsForm.value;
 
-      this.http.delete('${this.apiUrl}/persons/person/' + this.id, formData)
+      this.http.delete(this.apiUrl+'/persons/person/' + this.id, formData)
         .subscribe(data => {
           console.log('Success profile removed');
           

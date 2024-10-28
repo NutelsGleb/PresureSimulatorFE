@@ -4,7 +4,7 @@ COPY package*.json ./
 RUN npm install
 RUN npm install -g @angular/cli@18.1.4
 COPY . .
-RUN ng build --configuration=k8s
+RUN ng build --configuration=production
 FROM nginx:latest
 COPY --from=build /app/dist/presure-simulator-fe/browser /usr/share/nginx/html
 COPY ./nginx.conf /etc/nginx/nginx.conf

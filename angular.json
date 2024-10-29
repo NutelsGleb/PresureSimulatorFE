@@ -57,6 +57,27 @@
               ],
               "outputHashing": "all"
             },
+			"k8s": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+			  "fileReplacements": [
+				{
+					"replace": "app/src/environments/environment.ts",
+					"with": "app/src/environments/environment.k8s.ts"
+				}
+			  ],
+              "outputHashing": "all"
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
